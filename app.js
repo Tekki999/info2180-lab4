@@ -1,23 +1,26 @@
 document.getElementById("searchButton").addEventListener("click", function () {
-    // Fetch the Avengers list from the server
-    fetch("superheroes.php")
-        .then(response => response.text())
-        .then(data => {
-            // Display the data in a formatted way in the modal
-            document.getElementById("characterList").innerHTML = data;
-            showModal();
-        })
-        .catch(error => {
-            alert("There was a problem fetching the data: " + error.message);
-        });
+    
+    const query = encodeURIComponent(document.getElementById("searchField").value.trim());
+    
+    const xhr = new XMLHttpRequest();
+    
+    const url = query
+        ? `http://localhost/info2180-lab4/superheroes.php?query=${query}`
+        : `http://localhost/info2180-lab4/superheroes.php`;
+
+    
+    xhr.open("GET", url, true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) { 
+            if (xhr.status === 200) { 
+                document.getElementById("result").innerHTML = xhr.responseText;
+            } else {
+                document.getElementById("result").innerHTML = `<p>Error fetching data: ${xhr.statusText}</p>`;
+            }
+        }
+    };
+
+    
+    xhr.send();
 });
-
-function showModal() {
-    document.getElementById("modal").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
-}
-
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
-}

@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avengers Character Search</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>Superheroes Search</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Avengers Character Search</h1>
-    <button id="searchButton">Search</button>
-
-    <div id="overlay"></div>
-    <div id="modal">
-        <div id="characterList"></div>
-        <button onclick="closeModal()">OK</button>
-    </div>
-
+    <header>
+        <h1>Avengers Character Search</h1>
+    </header>
+    <main>
+        <section class="search-container">
+            <label for="searchField">Search by Full Name or Alias</label>
+            <div class="input-group">
+                <input type="text" id="searchField" placeholder="e.g. Captain America or Steve Rogers">
+                <button id="searchButton">Search</button>
+            </div>
+        </section>
+        <section id="result-container">
+            <h2>RESULT</h2>
+            <div id="result"></div>
+        </section>
+    </main>    
     <script src="app.js"></script>
 </body>
 </html>
